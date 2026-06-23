@@ -3,9 +3,9 @@ import {
 	CircularDependencyError,
 	ContainerDisposedError,
 	EncapsulationError,
-	KyrosError,
 	TokenCollisionError,
 	TokenNotFoundError,
+	WirelyError,
 	createContainer,
 	defineModule,
 	defineProvider,
@@ -215,14 +215,14 @@ describe("README — Container reference and Errors", () => {
 		expect(() => container.get("NOPE")).toThrow(TokenNotFoundError);
 	});
 
-	it("every documented error extends KyrosError", () => {
+	it("every documented error extends WirelyError", () => {
 		const cases = [
 			new TokenNotFoundError("x"),
 			new TokenCollisionError("x"),
 			new EncapsulationError("x"),
 			new CircularDependencyError(["x"]),
-			new ContainerDisposedError("kyros"),
+			new ContainerDisposedError("wirely"),
 		];
-		for (const error of cases) expect(error).toBeInstanceOf(KyrosError);
+		for (const error of cases) expect(error).toBeInstanceOf(WirelyError);
 	});
 });

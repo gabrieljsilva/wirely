@@ -1,6 +1,6 @@
 import type { Container, ContainerOptions } from "../types/container.types";
 import type { ModuleDefinition } from "../types/module.types";
-import { KyrosContainer } from "./container";
+import { WirelyContainer } from "./container";
 
 /**
  * Builds a container from a root module. Registers every module reachable through
@@ -8,5 +8,5 @@ import { KyrosContainer } from "./container";
  * constructed lazily on `get`, or eagerly via `init`.
  */
 export function createContainer(rootModule: ModuleDefinition, options: ContainerOptions = {}): Container {
-	return new KyrosContainer(rootModule, options);
+	return new WirelyContainer(rootModule, options);
 }

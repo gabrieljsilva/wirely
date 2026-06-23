@@ -1,5 +1,5 @@
 ---
-title: Kyros — esqueleto do monorepo + core de DI
+title: Wirely — esqueleto do monorepo + core de DI
 state: pr
 created: 2026-06-22
 updated: 2026-06-22
@@ -8,7 +8,7 @@ clickup: —
 
 ## Contexto de negócio
 
-Kyros é uma lib/framework de Dependency Injection baseada em funções, inspirada no
+Wirely é uma lib/framework de Dependency Injection baseada em funções, inspirada no
 NestJS, mas **sem decorators no core** e sem reflection/auto-wiring. O objetivo é uma
 DI **fortemente tipada em TS** e ao mesmo tempo **usável em JS puro**, simples porém
 poderosa, para substituir a DI de outra lib do autor. Decorators (TC39 nativos e legacy
@@ -26,7 +26,7 @@ API funcional principal:
   só o que está em `exports` fica visível a quem importa.
 - `defineProvider({ provide?, useClass | useValue | useFactory, scope? })` —
   lifetime `singleton` (padrão) ou `transient`.
-- `defineProvider({ useClass, inject: [...], scope })` — declara dependências sem decorator, DENTRO de `defineModule`. Classe permanece pura (sem import do kyros). (Decisão revista: `defineInjectable` foi removido.)
+- `defineProvider({ useClass, inject: [...], scope })` — declara dependências sem decorator, DENTRO de `defineModule`. Classe permanece pura (sem import do wirely). (Decisão revista: `defineInjectable` foi removido.)
 - **Token**: derivado da própria classe (usar a classe como token) **ou** string/symbol.
 - **Globals**: providers/módulos marcados como globais ficam visíveis a todos os módulos.
 - **Hooks** de ciclo de vida do container/módulos.
@@ -39,7 +39,7 @@ inferência de tipos), e a mesma API rodando em JS puro.
 ## Testes de aceitação
 
 Feature: Resolver dependências entre módulos
-  As a Dev TS consumidor do Kyros
+  As a Dev TS consumidor do Wirely
   I want to declarar módulos com providers e importá-los
   So that minhas dependências são montadas automaticamente e tipadas
 
@@ -70,7 +70,7 @@ Feature: Resolver dependências entre módulos
     Then recebo o valor/instância correspondente
 
 Feature: Encapsulamento de módulos
-  As a Dev consumidor do Kyros
+  As a Dev consumidor do Wirely
   I want to controlar o que cada módulo expõe
   So that módulos não vazam detalhes internos
 
@@ -87,7 +87,7 @@ Feature: Encapsulamento de módulos
     Then recebo um erro de encapsulamento claro indicando o token e o módulo
 
 Feature: Globais
-  As a Dev consumidor do Kyros
+  As a Dev consumidor do Wirely
   I want to registrar providers/módulos globais
   So that ficam disponíveis sem reimportar em todo lugar
 
@@ -102,7 +102,7 @@ Feature: Globais
     Then recebo um erro de colisão de token no momento do registro
 
 Feature: Erros acionáveis (DX)
-  As a Dev consumidor do Kyros
+  As a Dev consumidor do Wirely
   I want to mensagens de erro claras
   So that identifico o problema sem depurar o framework
 
@@ -122,7 +122,7 @@ Feature: Erros acionáveis (DX)
     Then ambos são construídos com sucesso
 
 Feature: Ciclo de vida
-  As a Dev consumidor do Kyros
+  As a Dev consumidor do Wirely
   I want to hooks de ciclo de vida
   So that posso inicializar e finalizar recursos
 
@@ -155,7 +155,7 @@ Execução em **TDD red→green**, por blocos (sub-agentes isolados/paralelos qu
 
 1. **Esqueleto do monorepo** — `package.json` (workspaces), `turbo.json`, `tsconfig` raiz strict,
    `biome.json`, `vitest.config.ts`, `.npmrc`, `.gitignore`, `.changeset/`, `LICENSE`, `README`.
-2. **Pacote `@kyros/core`** — `package.json`, `rollup.config.mjs`, `tsconfig.json` + `tsconfig.build.json`, `src/index.ts`.
+2. **Pacote `@wirely/core`** — `package.json`, `rollup.config.mjs`, `tsconfig.json` + `tsconfig.build.json`, `src/index.ts`.
 3. **Tipos** (`src/lib/types`) — `Token`, `Provider` (Class/Value/Factory), `ModuleDefinition`,
    `InjectableDefinition`, `Lifecycle`, `ContainerOptions`, interfaces públicas.
 4. **`defineProvider` / `defineModule`** — factories puras que produzem definições tipadas (red: specs de forma/tipo primeiro).
@@ -178,7 +178,7 @@ Criar (monorepo):
 - `.npmrc`, `.gitignore`, `LICENSE`, `README.md`, `.changeset/config.json`.
 
 Criar (`packages/core`):
-- `packages/core/package.json` — `@kyros/core`, build rollup, exports cjs/esm/types.
+- `packages/core/package.json` — `@wirely/core`, build rollup, exports cjs/esm/types.
 - `packages/core/rollup.config.mjs` — entrada `src/index.ts`, saída dual.
 - `packages/core/tsconfig.json` + `tsconfig.build.json` — strict, sem reflect-metadata.
 - `packages/core/src/index.ts` — barrel público.
@@ -203,7 +203,7 @@ Criar (`packages/core`):
 - Deps de um provider resolvem na visibilidade do **módulo dono**, não do solicitante.
 - Mensagens de erro propagam o token solicitante (`requestedBy`) para DX.
 - TDD red→green: 17 specs cobrindo os 15 cenários. Lint (biome) limpo, `tsc` strict OK, build rollup cjs/esm/d.ts OK.
-- **Revisão de API (pós-fases):** `defineInjectable` removido. Classes ficam puras (sem import do kyros); toda fiação (`inject`/`scope`) vai em `defineProvider` dentro de `defineModule`. Eliminou a metadata-no-protótipo e o vetor do `Symbol.for`. Specs migrados (incl. 8 via sub-agentes paralelos); 55 testes verdes, typecheck/lint/build OK. Doc atualizada + seção de organização modular (src/modules/<module>/[*.service.ts, *.module.ts, use-cases/]).
+- **Revisão de API (pós-fases):** `defineInjectable` removido. Classes ficam puras (sem import do wirely); toda fiação (`inject`/`scope`) vai em `defineProvider` dentro de `defineModule`. Eliminou a metadata-no-protótipo e o vetor do `Symbol.for`. Specs migrados (incl. 8 via sub-agentes paralelos); 55 testes verdes, typecheck/lint/build OK. Doc atualizada + seção de organização modular (src/modules/<module>/[*.service.ts, *.module.ts, use-cases/]).
 
 ## PR
 

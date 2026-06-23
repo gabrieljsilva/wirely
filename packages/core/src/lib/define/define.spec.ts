@@ -36,7 +36,7 @@ describe("defineModule", () => {
 	it("brands the module and defaults empty collections", () => {
 		const mod = defineModule({});
 
-		expect(mod.__kyrosModule).toBe(true);
+		expect(mod.__wirelyModule).toBe(true);
 		expect(mod.imports).toEqual([]);
 		expect(mod.providers).toEqual([]);
 		expect(mod.exports).toEqual([]);

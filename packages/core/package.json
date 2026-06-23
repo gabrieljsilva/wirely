@@ -1,5 +1,5 @@
 {
-	"name": "@kyros/core",
+	"name": "@wirely/core",
 	"version": "0.1.0",
 	"description": "Function-based Dependency Injection core for TypeScript and pure JavaScript — no decorators, no reflection.",
 	"keywords": [
@@ -28,11 +28,11 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/gabrieljsilva/kyros.git",
+		"url": "git+https://github.com/gabrieljsilva/wirely.git",
 		"directory": "packages/core"
 	},
-	"homepage": "https://github.com/gabrieljsilva/kyros/tree/master/packages/core#readme",
-	"bugs": "https://github.com/gabrieljsilva/kyros/issues",
+	"homepage": "https://github.com/gabrieljsilva/wirely/tree/master/packages/core#readme",
+	"bugs": "https://github.com/gabrieljsilva/wirely/issues",
 	"engines": {
 		"node": ">=18"
 	},

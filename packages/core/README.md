@@ -1,4 +1,4 @@
-# @kyros/core
+# @wirely/core
 
 Function based Dependency Injection for TypeScript and pure JavaScript. It takes ideas from
 NestJS, but it has no decorators and no reflection in the core. You write plain classes, and
@@ -6,11 +6,11 @@ you wire them in modules.
 
 ## Introduction
 
-Kyros is a small container for Dependency Injection (DI). DI means you do not create your
+Wirely is a small container for Dependency Injection (DI). DI means you do not create your
 dependencies by hand. You declare them, and the container builds them for you.
 
-The main goal of Kyros is simple. Your classes stay pure. They do not import anything from
-Kyros. All the wiring lives in the module file. Because of this:
+The main goal of Wirely is simple. Your classes stay pure. They do not import anything from
+Wirely. All the wiring lives in the module file. Because of this:
 
 - The same code works in TypeScript and in plain JavaScript.
 - There is no decorator and no `reflect-metadata`.
@@ -25,7 +25,7 @@ plain functions, not decorators.
 Install the package with npm:
 
 ```bash
-npm install @kyros/core
+npm install @wirely/core
 ```
 
 You need Node.js 18 or newer. TypeScript is optional. If you use TypeScript, you get full
@@ -34,7 +34,7 @@ types and autocomplete. If you use plain JavaScript, the same API still works.
 The smallest program looks like this:
 
 ```ts
-import { createContainer, defineModule } from "@kyros/core";
+import { createContainer, defineModule } from "@wirely/core";
 
 class Greeter {
 	hello() {
@@ -71,7 +71,7 @@ class UserService {
 defineProvider({ useClass: UserService, inject: [UserRepository] });
 ```
 
-The class stays pure. It does not import Kyros. Only the module knows about `defineProvider`.
+The class stays pure. It does not import Wirely. Only the module knows about `defineProvider`.
 
 ### Value provider (`useValue`)
 
@@ -115,7 +115,7 @@ fight for the same token.
 A module groups providers that belong together. You declare a module with `defineModule`.
 
 ```ts
-import { defineModule, defineProvider } from "@kyros/core";
+import { defineModule, defineProvider } from "@wirely/core";
 
 export const UsersModule = defineModule({
 	providers: [
@@ -191,7 +191,7 @@ proxy. The proxy resolves the real instance the first time you touch it, so both
 be built.
 
 ```ts
-import { forwardRef } from "@kyros/core";
+import { forwardRef } from "@wirely/core";
 
 defineProvider({ useClass: ServiceA, inject: [forwardRef(() => ServiceB)] });
 defineProvider({ useClass: ServiceB, inject: [ServiceA] });
@@ -246,7 +246,7 @@ The container has a small surface:
 
 ## Errors
 
-All errors extend `KyrosError`, so you can catch them in one place.
+All errors extend `WirelyError`, so you can catch them in one place.
 
 | Error | When it happens |
 | --- | --- |
@@ -260,14 +260,14 @@ All errors extend `KyrosError`, so you can catch them in one place.
 
 ## Suggested project structure
 
-Kyros does not force a layout, but a feature first layout works well. Keep the classes pure
+Wirely does not force a layout, but a feature first layout works well. Keep the classes pure
 and put all the wiring in the `*.module.ts` file:
 
 ```
 src/
   modules/
     users/
-      users.module.ts        # defineModule and defineProvider (the only Kyros imports)
+      users.module.ts        # defineModule and defineProvider (the only Wirely imports)
       user.service.ts        # pure class
       user.repository.ts     # pure class
       use-cases/

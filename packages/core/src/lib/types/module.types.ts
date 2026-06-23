@@ -17,5 +17,5 @@ export interface ModuleConfig {
  * module apart from a plain config object.
  */
 export interface ModuleDefinition extends ModuleConfig {
-	readonly __kyrosModule: true;
+	readonly __wirelyModule: true;
 }

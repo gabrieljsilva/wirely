@@ -10,7 +10,7 @@ Overview of the automated flow and the one-time setup required on GitHub and npm
    automated **"chore: version packages"** PR (bumps the version and moves the
    changeset into the CHANGELOG). It does **not** publish yet.
 3. When you want to release, **merge that PR**. Only then does Release build, tag
-   and publish to npm (`@kyros/core`) with **provenance**.
+   and publish to npm (`@wirely/core`) with **provenance**.
 
 ## Tokenless publishing: OIDC Trusted Publishing
 
@@ -23,10 +23,10 @@ short-lived token issued by GitHub and validated by npm). One-time setup:
    cd packages/core && npm run build && npm publish --access public
    ```
    Use a short-lived granular token and **revoke it right after**.
-2. On npmjs.com, go to the `@kyros/core` package, **Settings -> Trusted Publisher**
+2. On npmjs.com, go to the `@wirely/core` package, **Settings -> Trusted Publisher**
    and add:
    - Provider: GitHub Actions
-   - Repository: `gabrieljsilva/kyros`
+   - Repository: `gabrieljsilva/wirely`
    - Workflow: `release.yml`
 3. Done. From now on every publish is OIDC, with no stored token.
    - Requires npm >= 11.5.1 on the runner (`release.yml` runs `npm install -g npm@latest`).

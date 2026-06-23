@@ -24,7 +24,7 @@ interface OnDestroyLike {
 	onDestroy(): void | Promise<void>;
 }
 
-export class KyrosContainer implements Container {
+export class WirelyContainer implements Container {
 	public readonly name: string;
 
 	private readonly registry = new Map<Token, ProviderRecord>();
@@ -40,7 +40,7 @@ export class KyrosContainer implements Container {
 	private disposed = false;
 
 	constructor(rootModule: ModuleDefinition, options: ContainerOptions = {}) {
-		this.name = options.name ?? "kyros";
+		this.name = options.name ?? "wirely";
 		this.rootModule = rootModule;
 
 		this.collectModules(rootModule);

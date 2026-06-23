@@ -6,7 +6,7 @@ import type { ModuleConfig, ModuleDefinition } from "../types/module.types";
  */
 export function defineModule(config: ModuleConfig): ModuleDefinition {
 	return Object.freeze({
-		__kyrosModule: true as const,
+		__wirelyModule: true as const,
 		imports: config.imports ?? [],
 		providers: config.providers ?? [],
 		exports: config.exports ?? [],

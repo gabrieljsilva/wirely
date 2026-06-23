@@ -1,9 +1,9 @@
-export { createContainer, KyrosContainer } from "./lib/container";
+export { createContainer, WirelyContainer } from "./lib/container";
 export { defineModule, defineProvider } from "./lib/define";
 export { forwardRef, isForwardRef } from "./lib/forward-ref/forward-ref";
 export type { ForwardRef } from "./lib/forward-ref/forward-ref";
 export {
-	KyrosError,
+	WirelyError,
 	TokenNotFoundError,
 	TokenCollisionError,
 	CircularDependencyError,

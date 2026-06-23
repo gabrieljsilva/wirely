@@ -1,4 +1,4 @@
-# Kyros
+# Wirely
 
 A function based Dependency Injection framework for TypeScript and pure JavaScript. It takes
 ideas from NestJS, but it has **no decorators in the core** and no reflection or auto wiring.
@@ -9,7 +9,7 @@ Strongly typed when you want it, and friendly to plain JavaScript when you do no
 
 | Package | Description |
 | --- | --- |
-| [`@kyros/core`](./packages/core) | The DI core: container, modules, providers, lifecycle. See its README for the full guide. |
+| [`@wirely/core`](./packages/core) | The DI core: container, modules, providers, lifecycle. See its README for the full guide. |
 
 ## Core ideas
 
@@ -23,7 +23,7 @@ Strongly typed when you want it, and friendly to plain JavaScript when you do no
 Classes stay pure. The wiring lives in the module, through `defineProvider`.
 
 ```ts
-import { createContainer, defineModule, defineProvider } from "@kyros/core";
+import { createContainer, defineModule, defineProvider } from "@wirely/core";
 
 class UserRepository {}
 

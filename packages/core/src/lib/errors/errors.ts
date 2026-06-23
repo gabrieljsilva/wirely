@@ -8,21 +8,21 @@ export function tokenName(token: Token): string {
 	return typeof token;
 }
 
-export class KyrosError extends Error {
+export class WirelyError extends Error {
 	constructor(message: string) {
 		super(message);
 		this.name = new.target.name;
 	}
 }
 
-export class TokenNotFoundError extends KyrosError {
+export class TokenNotFoundError extends WirelyError {
 	constructor(token: Token, requestedBy?: Token) {
 		const by = requestedBy ? ` (requested by ${tokenName(requestedBy)})` : "";
 		super(`No provider registered for token "${tokenName(token)}"${by}.`);
 	}
 }
 
-export class TokenCollisionError extends KyrosError {
+export class TokenCollisionError extends WirelyError {
 	constructor(token: Token) {
 		super(
 			`Token "${tokenName(token)}" is already registered. Each token must be unique across the container (globals and module providers included).`,
@@ -30,26 +30,26 @@ export class TokenCollisionError extends KyrosError {
 	}
 }
 
-export class CircularDependencyError extends KyrosError {
+export class CircularDependencyError extends WirelyError {
 	constructor(path: Token[]) {
 		const trail = path.map(tokenName).join(" -> ");
 		super(`Circular dependency detected: ${trail}. Break the cycle with forwardRef(() => Token) on one side.`);
 	}
 }
 
-export class InvalidProviderError extends KyrosError {
+export class InvalidProviderError extends WirelyError {
 	constructor(token: Token) {
 		super(`Provider for token "${tokenName(token)}" is malformed: it has no useClass, useValue or useFactory.`);
 	}
 }
 
-export class ContainerDisposedError extends KyrosError {
+export class ContainerDisposedError extends WirelyError {
 	constructor(name: string) {
 		super(`Container "${name}" has been disposed and can no longer be used.`);
 	}
 }
 
-export class ResolutionDepthError extends KyrosError {
+export class ResolutionDepthError extends WirelyError {
 	constructor(token: Token, maxDepth: number) {
 		super(
 			`Resolution depth exceeded ${maxDepth} while resolving "${tokenName(token)}". The dependency graph is too deep or recursing unexpectedly.`,
@@ -57,7 +57,7 @@ export class ResolutionDepthError extends KyrosError {
 	}
 }
 
-export class EncapsulationError extends KyrosError {
+export class EncapsulationError extends WirelyError {
 	constructor(token: Token, requestedBy?: Token) {
 		const by = requestedBy ? ` by "${tokenName(requestedBy)}"` : "";
 		super(

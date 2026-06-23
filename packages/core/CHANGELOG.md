@@ -1,4 +1,4 @@
-# @kyros/core
+# @wirely/core
 
 ## 0.1.0
 

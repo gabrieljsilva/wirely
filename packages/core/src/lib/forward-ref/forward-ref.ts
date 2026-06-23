@@ -1,6 +1,6 @@
 import type { Token } from "../types/token.types";
 
-const FORWARD_REF = Symbol("kyros:forwardRef");
+const FORWARD_REF = Symbol("wirely:forwardRef");
 
 export interface ForwardRef {
 	readonly [FORWARD_REF]: true;
