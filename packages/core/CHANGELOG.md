@@ -1,5 +1,11 @@
 # @wirely/core
 
+## 0.1.1
+
+### Patch Changes
+
+- 078be90: First release published through the automated CI pipeline, adding npm provenance attestation (the initial 0.1.0 was published manually without it).
+
 ## 0.1.0
 
 ### Minor Changes
