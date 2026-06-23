@@ -1,6 +1,6 @@
 {
 	"name": "@wirely/core",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Function-based Dependency Injection core for TypeScript and pure JavaScript — no decorators, no reflection.",
 	"keywords": [
 		"dependency-injection",
