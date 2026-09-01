@@ -53,7 +53,7 @@
 		"@rollup/plugin-typescript": "^11.1.6",
 		"@types/node": "^20.14.11",
 		"rimraf": "^6.0.1",
-		"rollup": "^4.62.4",
+		"rollup": "^4.63.0",
 		"tslib": "^2.6.3",
 		"typescript": "^5.5.3"
 	},
